@@ -1,7 +1,7 @@
 [project]
 name = "folketinget"
 version = "0.1.0"
-description = "Add your description here"
+description = "Intuitive client for the Danish Parliament API."
 readme = "README.md"
 authors = [
     { name = "Kasper Junge", email = "kasperjuunge@gmail.com" }
