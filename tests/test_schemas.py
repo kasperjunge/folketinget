@@ -1,6 +1,6 @@
-import requests
+import httpx
 import pytest
-from folketinget.schemas import * 
+from folketinget.schemas import *
 
 BASE_URL = "https://oda.ft.dk/api/"
 
@@ -59,23 +59,26 @@ models_and_endpoints = [
     # Add additional models as needed...
 ]
 
+
 @pytest.mark.parametrize("model_class, endpoint", models_and_endpoints)
 def test_model_instantiation(model_class, endpoint):
-    url = f"{BASE_URL}{endpoint}?$top=1"
-    response = requests.get(url)
-    response.raise_for_status()
+    with httpx.Client() as client:
 
-    json_data = response.json()
-    # OData responses typically include a "value" key with an array of records.
-    records = json_data.get("value", [])
-    assert records, f"No records found for endpoint {endpoint}"
+        url = f"{BASE_URL}{endpoint}?$top=1"
+        response = client.get(url)
+        response.raise_for_status()
 
-    # Use the first record to instantiate the model.
-    record = records[0]
-    try:
-        instance = model_class(**record)
-    except Exception as e:
-        pytest.fail(f"Failed to instantiate {model_class.__name__} from data: {e}")
+        json_data = response.json()
+        # OData responses typically include a "value" key with an array of records.
+        records = json_data.get("value", [])
+        assert records, f"No records found for endpoint {endpoint}"
 
-    assert isinstance(instance, model_class)
-    # Additional field-specific assertions can be added here if needed.
+        # Use the first record to instantiate the model.
+        record = records[0]
+        try:
+            instance = model_class(**record)
+        except Exception as e:
+            pytest.fail(f"Failed to instantiate {model_class.__name__} from data: {e}")
+
+        assert isinstance(instance, model_class)
+        # Additional field-specific assertions can be added here if needed.

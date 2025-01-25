@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import Optional
 from pydantic import BaseModel
 
 
@@ -36,7 +35,7 @@ class Sagstrin(BaseModel):
     dato: datetime
     folketingstidende: str
     folketingstidendesidenummer: str
-    folketingstidendeurl: Optional[str] = None  # Nullable field
+    folketingstidendeurl: str | None = None  # Nullable field
     id: int
     opdateringsdato: datetime
     sagid: int
@@ -65,30 +64,30 @@ class Sagstype(BaseModel):
 
 
 class Sag(BaseModel):
-    afgørelse: Optional[str] = None
-    afgørelsesdato: Optional[datetime] = None
-    afgørelsesresultatkode: Optional[str] = None
-    afstemningskonklusion: Optional[str] = None
-    baggrundsmateriale: Optional[str] = None
-    begrundelse: Optional[str] = None
-    deltundersagid: Optional[int] = None
-    fremsatundersagid: Optional[int] = None
+    afgørelse: str | None = None
+    afgørelsesdato: datetime | None = None
+    afgørelsesresultatkode: str | None = None
+    afstemningskonklusion: str | None = None
+    baggrundsmateriale: str | None = None
+    begrundelse: str | None = None
+    deltundersagid: int | None = None
+    fremsatundersagid: int | None = None
     id: int
     kategoriid: int
-    lovnummer: Optional[str] = None
-    lovnummerdato: Optional[datetime] = None
-    nummer: Optional[str] = None
+    lovnummer: str | None = None
+    lovnummerdato: datetime | None = None
+    nummer: str | None = None
     nummernumerisk: str
     nummerpostfix: str
     nummerprefix: str
     offentlighedskode: str
     opdateringsdato: datetime
-    paragraf: Optional[str] = None
-    paragrafnummer: Optional[int] = None
+    paragraf: str | None = None
+    paragrafnummer: int | None = None
     periodeid: int
     resume: str
-    retsinformationsurl: Optional[str] = None
-    rådsmødedato: Optional[datetime] = None
+    retsinformationsurl: str | None = None
+    rådsmødedato: datetime | None = None
     statsbudgetsag: bool
     statusid: int
     titel: str
@@ -97,30 +96,30 @@ class Sag(BaseModel):
 
 
 class Aktstykke(BaseModel):
-    afgørelse: Optional[str] = None
-    afgørelsesdato: Optional[datetime] = None
-    afgørelsesresultatkode: Optional[str] = None
+    afgørelse: str | None = None
+    afgørelsesdato: datetime | None = None
+    afgørelsesresultatkode: str | None = None
     afstemningskonklusion: str
-    baggrundsmateriale: Optional[str] = None
-    begrundelse: Optional[str] = None
-    deltundersagid: Optional[int] = None
-    fremsatundersagid: Optional[int] = None
+    baggrundsmateriale: str | None = None
+    begrundelse: str | None = None
+    deltundersagid: int | None = None
+    fremsatundersagid: int | None = None
     id: int
     kategoriid: int
     lovnummer: str
-    lovnummerdato: Optional[datetime] = None
+    lovnummerdato: datetime | None = None
     nummer: str
     nummernumerisk: str
     nummerpostfix: str
     nummerprefix: str
     offentlighedskode: str
     opdateringsdato: datetime
-    paragraf: Optional[str] = None
-    paragrafnummer: Optional[int] = None
+    paragraf: str | None = None
+    paragrafnummer: int | None = None
     periodeid: int
     resume: str
-    retsinformationsurl: Optional[str] = None
-    rådsmødedato: Optional[datetime] = None
+    retsinformationsurl: str | None = None
+    rådsmødedato: datetime | None = None
     statsbudgetsag: bool
     statusid: int
     titel: str
@@ -129,30 +128,30 @@ class Aktstykke(BaseModel):
 
 
 class Almdel(BaseModel):
-    afgørelse: Optional[str] = None
-    afgørelsesdato: Optional[datetime] = None
-    afgørelsesresultatkode: Optional[str] = None
-    afstemningskonklusion: Optional[str] = None
-    baggrundsmateriale: Optional[str] = None
-    begrundelse: Optional[str] = None
-    deltundersagid: Optional[int] = None
-    fremsatundersagid: Optional[int] = None
+    afgørelse: str | None = None
+    afgørelsesdato: datetime | None = None
+    afgørelsesresultatkode: str | None = None
+    afstemningskonklusion: str | None = None
+    baggrundsmateriale: str | None = None
+    begrundelse: str | None = None
+    deltundersagid: int | None = None
+    fremsatundersagid: int | None = None
     id: int
-    kategoriid: Optional[int] = None
-    lovnummer: Optional[str] = None
-    lovnummerdato: Optional[datetime] = None
-    nummer: Optional[str] = None
+    kategoriid: int | None = None
+    lovnummer: str | None = None
+    lovnummerdato: datetime | None = None
+    nummer: str | None = None
     nummernumerisk: str
     nummerpostfix: str
     nummerprefix: str
     offentlighedskode: str
     opdateringsdato: datetime
-    paragraf: Optional[str] = None
-    paragrafnummer: Optional[int] = None
+    paragraf: str | None = None
+    paragrafnummer: int | None = None
     periodeid: int
     resume: str
-    retsinformationsurl: Optional[str] = None
-    rådsmødedato: Optional[datetime] = None
+    retsinformationsurl: str | None = None
+    rådsmødedato: datetime | None = None
     statsbudgetsag: bool
     statusid: int
     titel: str
@@ -161,30 +160,30 @@ class Almdel(BaseModel):
 
 
 class Debat(BaseModel):
-    afgørelse: Optional[str] = None
-    afgørelsesdato: Optional[datetime] = None
-    afgørelsesresultatkode: Optional[str] = None
-    afstemningskonklusion: Optional[str] = None
-    baggrundsmateriale: Optional[str] = None
-    begrundelse: Optional[str] = None
-    deltundersagid: Optional[int] = None
-    fremsatundersagid: Optional[int] = None
+    afgørelse: str | None = None
+    afgørelsesdato: datetime | None = None
+    afgørelsesresultatkode: str | None = None
+    afstemningskonklusion: str | None = None
+    baggrundsmateriale: str | None = None
+    begrundelse: str | None = None
+    deltundersagid: int | None = None
+    fremsatundersagid: int | None = None
     id: int
-    kategoriid: Optional[int] = None
-    lovnummer: Optional[str] = None
-    lovnummerdato: Optional[datetime] = None
-    nummer: Optional[str] = None
+    kategoriid: int | None = None
+    lovnummer: str | None = None
+    lovnummerdato: datetime | None = None
+    nummer: str | None = None
     nummernumerisk: str
     nummerpostfix: str
     nummerprefix: str
     offentlighedskode: str
     opdateringsdato: datetime
-    paragraf: Optional[str] = None
-    paragrafnummer: Optional[int] = None
+    paragraf: str | None = None
+    paragrafnummer: int | None = None
     periodeid: int
     resume: str
-    retsinformationsurl: Optional[str] = None
-    rådsmødedato: Optional[datetime] = None
+    retsinformationsurl: str | None = None
+    rådsmødedato: datetime | None = None
     statsbudgetsag: bool
     statusid: int
     titel: str
@@ -193,30 +192,30 @@ class Debat(BaseModel):
 
 
 class Forslag(BaseModel):
-    afgørelse: Optional[str] = None
-    afgørelsesdato: Optional[datetime] = None
-    afgørelsesresultatkode: Optional[str] = None
-    afstemningskonklusion: Optional[str] = None
-    baggrundsmateriale: Optional[str] = None
-    begrundelse: Optional[str] = None
-    deltundersagid: Optional[int] = None
-    fremsatundersagid: Optional[int] = None
+    afgørelse: str | None = None
+    afgørelsesdato: datetime | None = None
+    afgørelsesresultatkode: str | None = None
+    afstemningskonklusion: str | None = None
+    baggrundsmateriale: str | None = None
+    begrundelse: str | None = None
+    deltundersagid: int | None = None
+    fremsatundersagid: int | None = None
     id: int
-    kategoriid: Optional[int] = None
-    lovnummer: Optional[str] = None
-    lovnummerdato: Optional[datetime] = None
-    nummer: Optional[str] = None
+    kategoriid: int | None = None
+    lovnummer: str | None = None
+    lovnummerdato: datetime | None = None
+    nummer: str | None = None
     nummernumerisk: str
     nummerpostfix: str
     nummerprefix: str
     offentlighedskode: str
     opdateringsdato: datetime
-    paragraf: Optional[str] = None
-    paragrafnummer: Optional[int] = None
+    paragraf: str | None = None
+    paragrafnummer: int | None = None
     periodeid: int
     resume: str
-    retsinformationsurl: Optional[str] = None
-    rådsmødedato: Optional[datetime] = None
+    retsinformationsurl: str | None = None
+    rådsmødedato: datetime | None = None
     statsbudgetsag: bool
     statusid: int
     titel: str
@@ -313,8 +312,9 @@ class SagDokument(BaseModel):
     frigivelsesdato: datetime
     id: int
     opdateringsdato: datetime
-    rolleid: Optional[int] = None  # Made optional to handle missing or mismatched field
+    rolleid: int | None = None  # Made optional to handle missing or mismatched field
     sagid: int
+
 
 class SagstrinAktør(BaseModel):
     aktørid: int
@@ -398,7 +398,7 @@ class AktørAktør(BaseModel):
     id: int
     opdateringsdato: datetime
     rolleid: int
-    slutdato: Optional[datetime] = None
+    slutdato: datetime | None = None
     startdato: datetime
     tilaktørid: int
 
@@ -423,21 +423,21 @@ class Dokumenttype(BaseModel):
 
 
 class Dokument(BaseModel):
-    dagsordenudgavenummer: Optional[int] = None
+    dagsordenudgavenummer: int | None = None
     dato: datetime
     frigivelsesdato: datetime
     grundnotatstatus: str
     id: int
     kategoriid: int
-    modtagelsesdato: Optional[datetime] = None
+    modtagelsesdato: datetime | None = None
     offentlighedskode: str
     opdateringsdato: datetime
     paragraf: str
     paragrafnummer: str
     procedurenummer: str
-    spørgsmaalsid: Optional[int] = None
-    spørgsmaalsordlyd: Optional[str] = None
-    spørgsmaalstitel: Optional[str] = None
+    spørgsmaalsid: int | None = None
+    spørgsmaalsordlyd: str | None = None
+    spørgsmaalstitel: str | None = None
     statusid: int
     titel: str
     typeid: int
@@ -470,9 +470,9 @@ class Aktørtype(BaseModel):
 
 
 class Aktør(BaseModel):
-    biografi: Optional[str] = None
-    efternavn: Optional[str] = None
-    fornavn: Optional[str] = None
+    biografi: str | None = None
+    efternavn: str | None = None
+    fornavn: str | None = None
     gruppenavnkort: str
     id: int
     navn: str
@@ -510,12 +510,12 @@ class Afstemningstype(BaseModel):
 
 class Afstemning(BaseModel):
     id: int
-    kommentar: Optional[str] = None
+    kommentar: str | None = None
     konklusion: str
     mødeid: int
     nummer: int
     opdateringsdato: datetime
-    sagstrinid: Optional[int] = None
+    sagstrinid: int | None = None
     typeid: int
     vedtaget: bool
 
@@ -529,17 +529,17 @@ class Stemme(BaseModel):
 
 
 class Dagsordenspunkt(BaseModel):
-    forhandling: Optional[str] = None
+    forhandling: str | None = None
     forhandlingskode: str
     id: int
     kommentar: str
-    kørebemærkning: Optional[str] = None
+    kørebemærkning: str | None = None
     mødeid: int
     nummer: str
     offentlighedskode: str
     opdateringsdato: datetime
-    sagstrinid: Optional[int] = None
-    superid: Optional[int] = None
+    sagstrinid: int | None = None
+    superid: int | None = None
     titel: str
 
 
@@ -548,7 +548,7 @@ class Møde(BaseModel):
     dato: datetime
     id: int
     lokale: str
-    nummer: Optional[str] = None
+    nummer: str | None = None
     offentlighedskode: str
     opdateringsdato: datetime
     periodeid: int
