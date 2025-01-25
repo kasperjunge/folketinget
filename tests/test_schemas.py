@@ -1,6 +1,6 @@
 import httpx
 import pytest
-from folketinget.schemas import *
+from folketinget.models import *
 
 BASE_URL = "https://oda.ft.dk/api/"
 
