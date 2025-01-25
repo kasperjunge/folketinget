@@ -1,6 +1,6 @@
 import requests
 import pytest
-from folketinget.schemas import * 
+from folketinget.schemas import *
 
 BASE_URL = "https://oda.ft.dk/api/"
 
@@ -58,6 +58,7 @@ models_and_endpoints = [
     # (Sambehandlinger, "Sambehandlinger"),
     # Add additional models as needed...
 ]
+
 
 @pytest.mark.parametrize("model_class, endpoint", models_and_endpoints)
 def test_model_instantiation(model_class, endpoint):

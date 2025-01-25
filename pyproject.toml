@@ -4,13 +4,11 @@ version = "0.1.0"
 description = "Intuitive client for the Danish Parliament API."
 readme = "README.md"
 authors = [
-    { name = "Kasper Junge", email = "kasperjuunge@gmail.com" }
+    { name = "Kasper Junge", email = "kasperjuunge@gmail.com" },
+    { name = "Jonas Høgh Kyhse-Andersen", email = "jonash@email.fo" },
 ]
 requires-python = ">=3.12"
-dependencies = [
-    "pydantic>=2.10.5",
-    "requests>=2.32.3",
-]
+dependencies = ["pydantic>=2.10.5", "requests>=2.32.3"]
 
 [project.scripts]
 folketinget = "folketinget:main"
@@ -20,8 +18,4 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [dependency-groups]
-dev = [
-    "ipykernel>=6.29.5",
-    "pandas>=2.2.3",
-    "pytest>=8.3.4",
-]
+dev = ["ipykernel>=6.29.5", "pandas>=2.2.3", "pytest>=8.3.4"]
