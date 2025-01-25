@@ -8,7 +8,10 @@ authors = [
     { name = "Jonas Høgh Kyhse-Andersen", email = "jonash@email.fo" },
 ]
 requires-python = ">=3.12"
-dependencies = ["pydantic>=2.10.5", "requests>=2.32.3"]
+dependencies = [
+    "httpx>=0.28.1",
+    "pydantic>=2.10.5",
+]
 
 [project.scripts]
 folketinget = "folketinget:main"
