@@ -14,10 +14,10 @@ models_and_endpoints = [
     (Sagskategori, "Sagskategori"),
     (Sagstype, "Sagstype"),
     (Sag, "Sag"),
-    (Aktstykke, "Aktstykke"),
-    (Almdel, "Almdel"),
-    (Debat, "Debat"),
-    (Forslag, "Forslag"),
+    (Sag, "Aktstykke"),
+    (Sag, "Almdel"),
+    (Sag, "Debat"),
+    (Sag, "Forslag"),
     (Emneord, "Emneord"),
     (Emneordstype, "Emneordstype"),
     (Periode, "Periode"),
@@ -61,7 +61,7 @@ models_and_endpoints = [
 
 
 @pytest.mark.parametrize("model_class, endpoint", models_and_endpoints)
-def test_model_instantiation(model_class, endpoint):
+def test_model_instantiation(model_class, endpoint: str):
     with httpx.Client() as client:
 
         url = f"{BASE_URL}{endpoint}?$top=1"
@@ -76,7 +76,7 @@ def test_model_instantiation(model_class, endpoint):
         # Use the first record to instantiate the model.
         record = records[0]
         try:
-            instance = model_class(**record)
+            instance = model_class(**record, objecttype=endpoint.lower())
         except Exception as e:
             pytest.fail(f"Failed to instantiate {model_class.__name__} from data: {e}")
 
