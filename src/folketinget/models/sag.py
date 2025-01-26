@@ -3,7 +3,7 @@ from pydantic import BaseModel, Field
 from enum import StrEnum, auto
 
 
-class ObjectType(StrEnum):
+class SagsType(StrEnum):
     AKTSTYKKE = auto()
     ALMDEL = auto()
     DEBAT = auto()
@@ -31,7 +31,7 @@ class Sagstype(BaseModel):
 
 
 class Sag(BaseModel):
-    objecttype: ObjectType = Field(description="Type of object")
+    objecttype: SagsType = Field(description="Type of object")
     afgørelse: str | None = None
     afgørelsesdato: datetime | None = None
     afgørelsesresultatkode: str | None = None
