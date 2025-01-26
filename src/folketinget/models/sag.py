@@ -1,5 +1,15 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from enum import StrEnum, auto
+
+
+class ObjectType(StrEnum):
+    AKTSTYKKE = auto()
+    ALMDEL = auto()
+    DEBAT = auto()
+    FORSLAG = auto()
+    SAG = auto()
+    EUSAG = auto()
 
 
 class Sagsstatus(BaseModel):
@@ -21,6 +31,7 @@ class Sagstype(BaseModel):
 
 
 class Sag(BaseModel):
+    objecttype: ObjectType = Field(description="Type of object")
     afgørelse: str | None = None
     afgørelsesdato: datetime | None = None
     afgørelsesresultatkode: str | None = None
@@ -30,7 +41,7 @@ class Sag(BaseModel):
     deltundersagid: int | None = None
     fremsatundersagid: int | None = None
     id: int
-    kategoriid: int
+    kategoriid: int | None
     lovnummer: str | None = None
     lovnummerdato: datetime | None = None
     nummer: str | None = None
@@ -45,166 +56,6 @@ class Sag(BaseModel):
     resume: str
     retsinformationsurl: str | None = None
     rådsmødedato: datetime | None = None
-    statsbudgetsag: bool
-    statusid: int
-    titel: str
-    titelkort: str
-    typeid: int
-
-
-class Aktstykke(BaseModel):
-    afgørelse: str | None = None
-    afgørelsesdato: datetime | None = None
-    afgørelsesresultatkode: str | None = None
-    afstemningskonklusion: str
-    baggrundsmateriale: str | None = None
-    begrundelse: str | None = None
-    deltundersagid: int | None = None
-    fremsatundersagid: int | None = None
-    id: int
-    kategoriid: int
-    lovnummer: str
-    lovnummerdato: datetime | None = None
-    nummer: str
-    nummernumerisk: str
-    nummerpostfix: str
-    nummerprefix: str
-    offentlighedskode: str
-    opdateringsdato: datetime
-    paragraf: str | None = None
-    paragrafnummer: int | None = None
-    periodeid: int
-    resume: str
-    retsinformationsurl: str | None = None
-    rådsmødedato: datetime | None = None
-    statsbudgetsag: bool
-    statusid: int
-    titel: str
-    titelkort: str
-    typeid: int
-
-
-class Almdel(BaseModel):
-    afgørelse: str | None = None
-    afgørelsesdato: datetime | None = None
-    afgørelsesresultatkode: str | None = None
-    afstemningskonklusion: str | None = None
-    baggrundsmateriale: str | None = None
-    begrundelse: str | None = None
-    deltundersagid: int | None = None
-    fremsatundersagid: int | None = None
-    id: int
-    kategoriid: int | None = None
-    lovnummer: str | None = None
-    lovnummerdato: datetime | None = None
-    nummer: str | None = None
-    nummernumerisk: str
-    nummerpostfix: str
-    nummerprefix: str
-    offentlighedskode: str
-    opdateringsdato: datetime
-    paragraf: str | None = None
-    paragrafnummer: int | None = None
-    periodeid: int
-    resume: str
-    retsinformationsurl: str | None = None
-    rådsmødedato: datetime | None = None
-    statsbudgetsag: bool
-    statusid: int
-    titel: str
-    titelkort: str
-    typeid: int
-
-
-class Debat(BaseModel):
-    afgørelse: str | None = None
-    afgørelsesdato: datetime | None = None
-    afgørelsesresultatkode: str | None = None
-    afstemningskonklusion: str | None = None
-    baggrundsmateriale: str | None = None
-    begrundelse: str | None = None
-    deltundersagid: int | None = None
-    fremsatundersagid: int | None = None
-    id: int
-    kategoriid: int | None = None
-    lovnummer: str | None = None
-    lovnummerdato: datetime | None = None
-    nummer: str | None = None
-    nummernumerisk: str
-    nummerpostfix: str
-    nummerprefix: str
-    offentlighedskode: str
-    opdateringsdato: datetime
-    paragraf: str | None = None
-    paragrafnummer: int | None = None
-    periodeid: int
-    resume: str
-    retsinformationsurl: str | None = None
-    rådsmødedato: datetime | None = None
-    statsbudgetsag: bool
-    statusid: int
-    titel: str
-    titelkort: str
-    typeid: int
-
-
-class Forslag(BaseModel):
-    afgørelse: str | None = None
-    afgørelsesdato: datetime | None = None
-    afgørelsesresultatkode: str | None = None
-    afstemningskonklusion: str | None = None
-    baggrundsmateriale: str | None = None
-    begrundelse: str | None = None
-    deltundersagid: int | None = None
-    fremsatundersagid: int | None = None
-    id: int
-    kategoriid: int | None = None
-    lovnummer: str | None = None
-    lovnummerdato: datetime | None = None
-    nummer: str | None = None
-    nummernumerisk: str
-    nummerpostfix: str
-    nummerprefix: str
-    offentlighedskode: str
-    opdateringsdato: datetime
-    paragraf: str | None = None
-    paragrafnummer: int | None = None
-    periodeid: int
-    resume: str
-    retsinformationsurl: str | None = None
-    rådsmødedato: datetime | None = None
-    statsbudgetsag: bool
-    statusid: int
-    titel: str
-    titelkort: str
-    typeid: int
-
-
-class EUsag(BaseModel):
-    afgørelse: str
-    afgørelsesdato: datetime
-    afgørelsesresultatkode: str
-    afstemningskonklusion: str
-    baggrundsmateriale: str
-    begrundelse: str
-    deltundersagid: int
-    fremsatundersagid: int
-    id: int
-    kategoriid: int
-    lovnummer: str
-    lovnummerdato: datetime
-    nummer: str
-    nummernumerisk: str
-    nummerpostfix: str
-    nummerprefix: str
-    offentlighedskode: str
-    opdateringsdato: datetime
-    paragraf: str
-    paragrafnummer: int
-    periodeid: int
-    resume: str
-    retsinformationsurl: str
-    rådsmødedato: datetime
     statsbudgetsag: bool
     statusid: int
     titel: str
