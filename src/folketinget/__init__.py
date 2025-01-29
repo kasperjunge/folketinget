@@ -1,1 +1,1 @@
-from .client import Folketinget
+from .client import Folketinget, Sag

@@ -10,3 +10,6 @@ wheels/
 .venv
 
 *.ipynb
+
+# development scripts
+jhk_dev.py

@@ -1,6 +1,9 @@
 import urllib
 import httpx
 
+from .querybuilder import BaseQueryBuilder
+from .fields import SagBaseFields
+
 
 class Folketinget:
     """Client for the Folketinget API."""
@@ -13,8 +16,8 @@ class Folketinget:
             session (requests.Session, optional): If provided, uses this HTTP session for requests.
                 Otherwise, creates a new session.
         """
-        self.base_url = "https://oda.ft.dk/api"
-        self.client = client or httpx.Client()
+        self._base_url = "https://oda.ft.dk/api"
+        self._client = client or httpx.Client()
 
     def _get(self, path: str, params: dict = None) -> dict:
         """Performs a GET request for JSON data, raising an error if the response is unsuccessful.
@@ -29,8 +32,8 @@ class Folketinget:
         Raises:
             HTTPError: If the response contains an HTTP error status code.
         """
-        url = f"{self.base_url}/{path.lstrip('/')}"
-        resp = self.client.get(url, params=params)
+        url = f"{self._base_url}/{path.lstrip('/')}"
+        resp = self._client.get(url, params=params)
         resp.raise_for_status()
         return resp.json()
 
@@ -49,9 +52,9 @@ class Folketinget:
         while next_url:
             if not next_url.startswith("http"):
                 # If the next link is relative, construct absolute:
-                next_url = urllib.parse.urljoin(self.base_url, next_url)
+                next_url = urllib.parse.urljoin(self._base_url, next_url)
 
-            resp = self.client.get(next_url)
+            resp = self._client.get(next_url)
             resp.raise_for_status()
             data = resp.json()
 
@@ -74,3 +77,7 @@ class Folketinget:
     def fetch_sag_id_from_nummer(self, sag_nummer: int): ...
 
     def fetch_periode(self, periode_id: int): ...
+
+
+class Sag(BaseQueryBuilder[SagBaseFields]):
+    _model_type = "Sag"
