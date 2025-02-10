@@ -1,7 +1,8 @@
 from typing import Optional, List, Literal, Generic
 from abc import ABC, abstractmethod
-
+from datetime import datetime
 from .protocols import FIELD, ODataQueryable
+from .fields import SagBaseFields
 
 ModelType = Literal[
     "Aktstykke",
@@ -30,9 +31,9 @@ class DuplicateExpressionNotAllowed(ValueError):
 class BaseQueryBuilder(ABC, Generic[FIELD], ODataQueryable[FIELD]):
     def __init__(
         self,
-        api_root: str = "https://oda.ft.dk/api",
+        base_url: str = "https://oda.ft.dk/api",
     ):
-        self._base_url = api_root + "/" + self._model_type
+        self._base_url = base_url + "/" + self._model_type
         self._expand: List[str] = []
         self._filter: Optional[str] = None
         self._orderby: List[str] = []
@@ -129,3 +130,20 @@ class BaseQueryBuilder(ABC, Generic[FIELD], ODataQueryable[FIELD]):
         query_string = "&".join(query_parts)
 
         return f"{self._base_url}?{query_string}"
+
+class OpdateringsdatoQueryBuilderMixin:
+    @property
+    def opdateringsdato_column(self) -> str:
+        return "opdateringsdato"
+    
+    def build_latest_updated_ids_since_query_url(self, timestamp: datetime) -> str:
+        self.filter(f"{self.opdateringsdato_column} gt datetime'{timestamp.isoformat()}'")
+        return self.build()
+    
+    def build_n_latest_updated_ids_query_url(self, n: int) -> str:
+        self.orderby(f"{self.opdateringsdato_column} desc").top(n)
+        return self.build()
+
+class SagQueryBuilder(BaseQueryBuilder[SagBaseFields], OpdateringsdatoQueryBuilderMixin):
+    _model_type = "Sag"
+
