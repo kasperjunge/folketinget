@@ -1,6 +1,6 @@
 [project]
 name = "folketinget"
-version = "0.1.0"
+version = "0.1.1"
 description = "Intuitive client for the Danish Parliament API."
 readme = "README.md"
 authors = [
@@ -21,4 +21,9 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [dependency-groups]
-dev = ["ipykernel>=6.29.5", "pandas>=2.2.3", "pytest>=8.3.4"]
+dev = [
+    "ipykernel>=6.29.5",
+    "pandas>=2.2.3",
+    "pytest>=8.3.4",
+    "ruff>=0.9.5",
+]
